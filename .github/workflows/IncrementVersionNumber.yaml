@@ -1,4 +1,4 @@
-name: Increment Version Number
+﻿name: Increment Version Number
 
 on:
   workflow_dispatch:
@@ -25,7 +25,7 @@ defaults:
 
 jobs:
   Initialization:
-    runs-on: [ windows-latest ]
+    runs-on: [ bc-build ]
     outputs:
       telemetryScopeJson: ${{ steps.init.outputs.telemetryScopeJson }}
     steps:
@@ -39,7 +39,7 @@ jobs:
           eventId: "DO0096"
 
   Update:
-    runs-on: [ windows-latest ]
+    runs-on: [ bc-build ]
     needs: [ Initialization ]
 
     steps:
@@ -53,7 +53,7 @@ jobs:
   
   PostProcess:
     if: always()
-    runs-on: [ windows-latest ]
+    runs-on: [ bc-build ]
     needs: [ Initialization, Update ]
     steps:
       - name: Checkout
