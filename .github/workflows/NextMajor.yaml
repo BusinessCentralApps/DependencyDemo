@@ -1,4 +1,4 @@
-name: Test Next Major
+﻿name: Test Next Major
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ defaults:
 
 jobs:
   Initialization:
-    runs-on: [ windows-latest ]
+    runs-on: [ bc-build ]
     outputs:
       telemetryScopeJson: ${{ steps.init.outputs.telemetryScopeJson }}
       settings: ${{ steps.ReadSettings.outputs.SettingsJson }}
@@ -122,7 +122,7 @@ jobs:
 
   PostProcess:
     if: always()
-    runs-on: [ windows-latest ]
+    runs-on: [ bc-build ]
     needs: [ Initialization, Build ]
     steps:
       - name: Checkout
@@ -134,4 +134,3 @@ jobs:
         with:
           eventId: "DO0099"
           telemetryScopeJson: ${{ needs.Initialization.outputs.telemetryScopeJson }}
-

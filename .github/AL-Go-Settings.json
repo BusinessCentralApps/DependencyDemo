@@ -1,4 +1,4 @@
-{
+﻿{
     "type":  "PTE",
     "templateUrl":  "https://github.com/freddydk/AL-Go-PTE@main",
     "runs-on":  "bc-build"
