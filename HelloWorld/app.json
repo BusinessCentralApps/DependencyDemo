@@ -16,7 +16,13 @@
                              "publisher":  "Freddy Kristiansen",
                              "name":  "BingMaps.PTE",
                              "version":  "1.0.0.0"
-                         }
+                         },
+                         {
+                            "id":  "b3cac512-f377-40bd-87cf-26ebe6d4e527",
+                            "publisher":  "Freddy",
+                            "name":  "Licensing",
+                            "version":  "1.0.0.0"
+                        }
                      ],
     "screenshots":  [
 

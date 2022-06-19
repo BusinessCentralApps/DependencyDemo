@@ -8,7 +8,11 @@
     "appDependencyProbingPaths":  [
         {
             "repo":  "https://github.com/BusinessCentralApps/BingMaps.PTE"
-        }        
+        },
+        {
+            "repo":  "https://github.com/BusinessCentralApps/LicensingDemo",
+            "release_status":  "latestBuild"
+        }
     ],
     "doNotRunTests":  true,
     "doNotRunBcptTests":  true
