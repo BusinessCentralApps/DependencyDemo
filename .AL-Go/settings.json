@@ -12,7 +12,7 @@
         {
             "repo":  "https://github.com/BusinessCentralApps/LicensingDemo",
             "release_status":  "latestBuild",
-            "AuthTokenSecret":  "OrgPAT"
+            "AuthTokenSecret":  "GhTokenWorkflow"
         }
     ],
     "doNotRunTests":  true,
