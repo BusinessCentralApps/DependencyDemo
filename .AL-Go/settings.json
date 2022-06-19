@@ -3,5 +3,12 @@
     "appFolders":  [
     ],
     "testFolders":  [
-    ]
+    ],
+    "appDependencyProbingPaths":  [
+        {
+            "repo":  "https://github.com/BusinessCentralApps/BingMaps.PTE"
+        }        
+    ],
+    "doNotRunTests":  true,
+    "doNotRunBcptTests":  true
 }
