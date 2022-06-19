@@ -1,6 +1,7 @@
 {
     "country":  "us",
     "appFolders":  [
+        "HelloWorld"
     ],
     "testFolders":  [
     ],
