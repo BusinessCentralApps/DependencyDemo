@@ -1,4 +1,4 @@
-﻿name: Add existing app or test app
+name: 'Add existing app or test app'
 
 on:
   workflow_dispatch:
@@ -21,46 +21,35 @@ permissions:
 
 defaults:
   run:
-    shell: PowerShell
+    shell: powershell
 
 jobs:
-  Initialization:
+  AddExistingAppOrTestApp:
     runs-on: [ bc-build ]
-    outputs:
-      telemetryScopeJson: ${{ steps.init.outputs.telemetryScopeJson }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Initialize the workflow
         id: init
         uses: freddydk/AL-Go-Actions/WorkflowInitialize@main
         with:
+          shell: powershell
           eventId: "DO0090"
 
-  Update:
-    runs-on: [ bc-build ]
-    needs: [ Initialization ]
-    steps:
       - name: Add existing app
         uses: freddydk/AL-Go-Actions/AddExistingApp@main
         with:
-          parentTelemetryScopeJson: ${{ needs.Initialization.outputs.telemetryScopeJson }}
+          shell: powershell
+          parentTelemetryScopeJson: ${{ steps.init.outputs.telemetryScopeJson }}
           project: ${{ github.event.inputs.project }}
           url: ${{ github.event.inputs.url }}
           directCommit: ${{ github.event.inputs.directCommit }}
 
-  PostProcess:
-    if: always()
-    runs-on: [ bc-build ]
-    needs: [ Initialization, Update ]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
       - name: Finalize the workflow
-        id: PostProcess
+        if: always()
         uses: freddydk/AL-Go-Actions/WorkflowPostProcess@main
         with:
+          shell: powershell
           eventId: "DO0090"
-          telemetryScopeJson: ${{ needs.Initialization.outputs.telemetryScopeJson }}
+          telemetryScopeJson: ${{ steps.init.outputs.telemetryScopeJson }}
