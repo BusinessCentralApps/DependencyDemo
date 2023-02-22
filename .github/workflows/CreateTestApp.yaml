@@ -48,13 +48,13 @@ jobs:
 
       - name: Initialize the workflow
         id: init
-        uses: freddydk/AL-Go-Actions/WorkflowInitialize@perf
+        uses: freddydk/AL-Go-Actions/WorkflowInitialize@main
         with:
           shell: powershell
           eventId: "DO0095"
 
       - name: Creating a new test app
-        uses: freddydk/AL-Go-Actions/CreateApp@perf
+        uses: freddydk/AL-Go-Actions/CreateApp@main
         with:
           shell: powershell
           parentTelemetryScopeJson: ${{ steps.init.outputs.telemetryScopeJson }}
@@ -68,7 +68,7 @@ jobs:
 
       - name: Finalize the workflow
         if: always()
-        uses: freddydk/AL-Go-Actions/WorkflowPostProcess@perf
+        uses: freddydk/AL-Go-Actions/WorkflowPostProcess@main
         with:
           shell: powershell
           eventId: "DO0095"
