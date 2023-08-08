@@ -7,7 +7,7 @@
     ],
     "appDependencyProbingPaths":  [
         {
-            "repo":  "https://github.com/bcsamples-bingmaps.pte"
+            "repo":  "https://github.com/microsoft/bcsamples-bingmaps.pte"
         },
         {
             "repo":  "https://github.com/BusinessCentralApps/LicensingDemo",
