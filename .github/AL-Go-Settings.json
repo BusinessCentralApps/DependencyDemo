@@ -1,5 +1,5 @@
 {
   "type": "PTE",
-  "templateUrl": "https://github.com/freddydk/AL-Go@OnlyNeededSecrets",
+  "templateUrl": "https://github.com/microsoft/AL-Go-PTE@preview",
   "runs-on": "bc-build"
 }
