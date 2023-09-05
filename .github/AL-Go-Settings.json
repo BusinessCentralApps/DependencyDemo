@@ -1,5 +1,5 @@
 {
   "type": "PTE",
-  "templateUrl": "https://github.com/freddydk/AL-Go@ApiVersion",
+  "templateUrl": "https://github.com/freddydk/AL-Go@main",
   "runs-on": "bc-build"
 }
