@@ -1,5 +1,6 @@
 *.app
 *.flf
+*.zip
 TestResults.xml
 BuildOutput.txt
 rad.json
