@@ -19,16 +19,17 @@ on:
         description: ID range (from..to)
         required: true
       sampleCode:
-        description: Include Sample code (Y/N)
-        required: false
-        default: 'Y'
-      directCommit:
-        description: Direct COMMIT (Y/N)
-        required: false
-        default: "N"
-      useGhTokenWorkflow:
-        description: Use GhTokenWorkflow for Pull Request/COMMIT
+        description: Include Sample code?
         type: boolean
+        default: true
+      directCommit:
+        description: Direct Commit?
+        type: boolean
+        default: false
+      useGhTokenWorkflow:
+        description: Use GhTokenWorkflow for PR/Commit?
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -44,27 +45,33 @@ env:
 
 jobs:
   CreateApp:
+    needs: [ ]
     runs-on: [ bc-build ]
     steps:
+      - name: Dump Workflow Information
+        uses: freddydk/AL-Go/Actions/DumpWorkflowInfo@bcptreport
+        with:
+          shell: powershell
+
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Initialize the workflow
         id: init
-        uses: freddydk/AL-Go/Actions/WorkflowInitialize@main
+        uses: freddydk/AL-Go/Actions/WorkflowInitialize@bcptreport
         with:
           shell: powershell
           eventId: "DO0092"
 
       - name: Read settings
-        uses: freddydk/AL-Go/Actions/ReadSettings@main
+        uses: freddydk/AL-Go/Actions/ReadSettings@bcptreport
         with:
           shell: powershell
           get: type
 
       - name: Read secrets
         id: ReadSecrets
-        uses: freddydk/AL-Go/Actions/ReadSecrets@main
+        uses: freddydk/AL-Go/Actions/ReadSecrets@bcptreport
         with:
           shell: powershell
           gitHubSecrets: ${{ toJson(secrets) }}
@@ -72,7 +79,7 @@ jobs:
           useGhTokenWorkflowForPush: '${{ github.event.inputs.useGhTokenWorkflow }}'
 
       - name: Creating a new app
-        uses: freddydk/AL-Go/Actions/CreateApp@main
+        uses: freddydk/AL-Go/Actions/CreateApp@bcptreport
         with:
           shell: powershell
           token: ${{ steps.ReadSecrets.outputs.TokenForPush }}
@@ -87,7 +94,7 @@ jobs:
 
       - name: Finalize the workflow
         if: always()
-        uses: freddydk/AL-Go/Actions/WorkflowPostProcess@main
+        uses: freddydk/AL-Go/Actions/WorkflowPostProcess@bcptreport
         with:
           shell: powershell
           eventId: "DO0092"
