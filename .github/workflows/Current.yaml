@@ -17,6 +17,7 @@ env:
 
 jobs:
   Initialization:
+    needs: [ ]
     runs-on: [ bc-build ]
     outputs:
       telemetryScopeJson: ${{ steps.init.outputs.telemetryScopeJson }}
@@ -27,6 +28,11 @@ jobs:
       buildOrderJson: ${{ steps.determineProjectsToBuild.outputs.BuildOrderJson }}
       workflowDepth: ${{ steps.DetermineWorkflowDepth.outputs.WorkflowDepth }}
     steps:
+      - name: Dump Workflow Information
+        uses: freddydk/AL-Go/Actions/DumpWorkflowInfo@bcptreport
+        with:
+          shell: powershell
+
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -34,14 +40,14 @@ jobs:
 
       - name: Initialize the workflow
         id: init
-        uses: freddydk/AL-Go/Actions/WorkflowInitialize@main
+        uses: freddydk/AL-Go/Actions/WorkflowInitialize@bcptreport
         with:
           shell: powershell
           eventId: "DO0101"
 
       - name: Read settings
         id: ReadSettings
-        uses: freddydk/AL-Go/Actions/ReadSettings@main
+        uses: freddydk/AL-Go/Actions/ReadSettings@bcptreport
         with:
           shell: powershell
 
@@ -52,7 +58,7 @@ jobs:
 
       - name: Determine Projects To Build
         id: determineProjectsToBuild
-        uses: freddydk/AL-Go/Actions/DetermineProjectsToBuild@main
+        uses: freddydk/AL-Go/Actions/DetermineProjectsToBuild@bcptreport
         with:
           shell: powershell
           maxBuildDepth: ${{ env.workflowDepth }}
@@ -80,16 +86,16 @@ jobs:
       artifactsNameSuffix: 'Current'
 
   PostProcess:
+    needs: [ Initialization, Build ]
     if: always()
     runs-on: [ bc-build ]
-    needs: [ Initialization, Build ]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Finalize the workflow
         id: PostProcess
-        uses: freddydk/AL-Go/Actions/WorkflowPostProcess@main
+        uses: freddydk/AL-Go/Actions/WorkflowPostProcess@bcptreport
         with:
           shell: powershell
           eventId: "DO0101"
