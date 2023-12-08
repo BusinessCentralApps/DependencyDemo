@@ -2,5 +2,5 @@
   "type": "PTE",
   "templateUrl": "https://github.com/mazhelez/AL-Go@fix-incremental-build",
   "runs-on": "bc-build",
-  "templateSha": "be9250487b32dac0232aafe5a7f99bbbb6fe7de7"
+  "templateSha": "3b516ee823bad85bb250fd0f0d609d84a2d5e060"
 }
