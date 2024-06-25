@@ -1,5 +1,6 @@
 {
   "type": "PTE",
   "templateUrl": "https://github.com/freddydk/AL-Go@nuget",
+  "gitHubRunnerShell": "pwsh",
   "templateSha": "10e70a8dd3ba72626c030465c6779c7d0f64371a"
 }
