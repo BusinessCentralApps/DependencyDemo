@@ -30,41 +30,41 @@ jobs:
 
       - name: Initialize the workflow
         id: init
-        uses: freddydk/AL-Go/Actions/WorkflowInitialize@nuget
+        uses: microsoft/AL-Go-Actions/WorkflowInitialize@v5.2
         with:
           shell: powershell
           eventId: "DO0097"
-
+        
       - name: Read settings
-        uses: freddydk/AL-Go/Actions/ReadSettings@nuget
+        uses: microsoft/AL-Go-Actions/ReadSettings@v5.2
         with:
           shell: powershell
 
       - name: Determine Deployment Environments
         id: DetermineDeploymentEnvironments
-        uses: freddydk/AL-Go/Actions/DetermineDeploymentEnvironments@nuget
+        uses: microsoft/AL-Go-Actions/DetermineDeploymentEnvironments@v5.2
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           shell: powershell
           getEnvironments: 'github-pages'
           type: 'Publish'
-
+            
       - name: Setup Pages
         if: steps.DetermineDeploymentEnvironments.outputs.deployALDocArtifact == 1
         uses: actions/configure-pages@v5
-
+        
       - name: Build Reference Documentation
-        uses: freddydk/AL-Go/Actions/BuildReferenceDocumentation@nuget
+        uses: microsoft/AL-Go-Actions/BuildReferenceDocumentation@v5.2
         with:
           shell: powershell
           artifacts: 'latest'
-
+        
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ".aldoc/_site/"
-
+        
       - name: Deploy to GitHub Pages
         if: steps.DetermineDeploymentEnvironments.outputs.deployALDocArtifact == 1
         id: deployment
