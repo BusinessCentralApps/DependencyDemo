@@ -5,6 +5,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 defaults:
   run:
@@ -18,7 +19,7 @@ env:
 jobs:
   Initialization:
     needs: [ ]
-    runs-on: [ bc-build ]
+    runs-on: [ windows-latest ]
     outputs:
       telemetryScopeJson: ${{ steps.init.outputs.telemetryScopeJson }}
       githubRunner: ${{ steps.ReadSettings.outputs.GitHubRunnerJson }}
@@ -34,7 +35,7 @@ jobs:
           shell: powershell
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           lfs: true
 
@@ -88,10 +89,10 @@ jobs:
   PostProcess:
     needs: [ Initialization, Build ]
     if: always()
-    runs-on: [ bc-build ]
+    runs-on: [ windows-latest ]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Finalize the workflow
         id: PostProcess

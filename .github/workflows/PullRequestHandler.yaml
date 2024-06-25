@@ -25,7 +25,7 @@ env:
 jobs:
   PregateCheck:
     if: (github.event.pull_request.base.repo.full_name != github.event.pull_request.head.repo.full_name) && (github.event_name != 'pull_request')
-    runs-on: [ windows-latest ]
+    runs-on: windows-latest
     steps:
       - uses: freddydk/AL-Go/Actions/VerifyPRChanges@nuget
 
@@ -49,7 +49,7 @@ jobs:
           shell: powershell
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           lfs: true
           ref: refs/pull/${{ github.event.number }}/merge

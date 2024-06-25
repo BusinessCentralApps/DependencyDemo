@@ -36,7 +36,7 @@ env:
 jobs:
   IncrementVersionNumber:
     needs: [ ]
-    runs-on: [ bc-build ]
+    runs-on: [ windows-latest ]
     steps:
       - name: Dump Workflow Information
         uses: freddydk/AL-Go/Actions/DumpWorkflowInfo@nuget
@@ -44,7 +44,7 @@ jobs:
           shell: powershell
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Initialize the workflow
         id: init
