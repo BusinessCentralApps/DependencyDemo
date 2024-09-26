@@ -1,6 +1,6 @@
 {
   "type": "PTE",
-  "templateUrl": "https://github.com/microsoft/AL-Go-PTE@main",
+  "templateUrl": "https://github.com/microsoft/AL-Go-PTE@preview",
   "gitHubRunnerShell": "pwsh",
-  "templateSha": "a6b2e468579e02a31a9cc9a2ae178a1e6beadf00"
+  "templateSha": "becb26e1f895fb75145bbc10535afb19c09bff5c"
 }
